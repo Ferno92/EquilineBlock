@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from "react";
-import { Button, Container, IconButton, Menu } from "@mui/material";
+import { Button, Container, IconButton, Menu, MenuItem } from "@mui/material";
 import useStyles from "../pages-styles/header.styles";
 import {
   AccountCircle,
@@ -25,6 +25,7 @@ export const Header = () => {
   const navigateTo = useCallback(
     (path: string) => {
       router.push(path);
+      handleCloseNavMenu();
     },
     [router]
   );
@@ -50,7 +51,7 @@ export const Header = () => {
     <Container maxWidth="xl" className={styles.root}>
       <div className={styles.header}>
         <Container
-          className={styles.menu}
+          className={styles.menuContainer}
           sx={{
             display: {
               xs: "flex",
@@ -68,6 +69,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Menu
+            className={styles.menu}
             id="menu-appbar"
             anchorEl={anchorElNav}
             anchorOrigin={{
@@ -83,7 +85,9 @@ export const Header = () => {
             onClose={handleCloseNavMenu}
           >
             {Array.from(pages).map(([key, pageName]) => (
-              <div key={key}>{pageName}</div>
+              <MenuItem key={key} onClick={() => navigateTo(key)}>
+                {pageName}
+              </MenuItem>
             ))}
           </Menu>
         </Container>

@@ -26,10 +26,12 @@ const useStyles = makeStyles(() => createStyles({
     link: {
         margin: "0 8px"
     },
-    menu: {
+    menuContainer: {
         width: "auto",
         marginLeft: 0,
         marginRight: 0
+    },
+    menu: {
     },
     logoContainer: {
         

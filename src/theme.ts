@@ -30,7 +30,7 @@ export const lightTheme = responsiveFontSizes(createTheme({
       default: Colors.DirtyWhite
     },
     primary: {
-      main: Colors.WaGreen
+      main: Colors.Black
     },
     secondary: {
       main: Colors.WaBlue
@@ -42,7 +42,7 @@ export const darkTheme = responsiveFontSizes(createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: Colors.WaGreen
+      main: Colors.BrightWhite
     },
     secondary: {
       main: Colors.WaBlue

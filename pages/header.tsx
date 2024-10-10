@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from "react";
-import { Container, IconButton, Menu } from "@mui/material";
+import { Button, Container, IconButton, Menu } from "@mui/material";
 import useStyles from "../pages-styles/header.styles";
 import {
   AccountCircle,
@@ -10,6 +10,7 @@ import {
 } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { ThemeContext } from "./_app";
+import { pages } from "../utils/DataUtils";
 
 export const Header = () => {
   const styles = useStyles();
@@ -34,7 +35,7 @@ export const Header = () => {
 
   const icons = [
     <Search key="search" />,
-    <Favorite key="favorite" onClick={toggleDarkMode} />,
+    <Favorite key="favorite" />,
     <AccountCircle key="account" />,
     <ShoppingBag key="bag" />,
   ];
@@ -109,7 +110,14 @@ export const Header = () => {
         </div>
         <div className={styles.icons}>
           {icons.map((icon, index) => (
-            <IconButton key={index}>{icon}</IconButton>
+            <IconButton
+              key={index}
+              onClick={() =>
+                icon.key === "favorite" ? toggleDarkMode() : undefined
+              }
+            >
+              {icon}
+            </IconButton>
           ))}
         </div>
       </div>
@@ -123,23 +131,16 @@ export const Header = () => {
         }}
       >
         {Array.from(pages).map(([key, pageName]) => (
-          <div key={key} className={styles.tab} onClick={() => navigateTo(key)}>
+          <Button
+            variant="text"
+            key={key}
+            className={styles.tab}
+            onClick={() => navigateTo(key)}
+          >
             {pageName}
-          </div>
+          </Button>
         ))}
       </Container>
     </Container>
   );
 };
-
-export const pages = new Map<string, string>([
-  ["donna", "Donna"],
-  ["uomo", "Uomo"],
-  ["junior", "Junior"],
-  ["caschi", "Caschi"],
-  ["safety", "Safety"],
-  ["cavallo", "Cavallo"],
-  ["selleria", "Selleria"],
-  ["saddleDivision", "Saddle Division"],
-  ["equniverse", "Eq Universe"],
-]);

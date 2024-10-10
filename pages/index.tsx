@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import React, { useEffect } from "react";
 import useStyles from "../pages-styles/index.styles";
-import { Header } from "./header";
+import Header from "./header";
 
 const Home: NextPage = () => {
   const styles = useStyles();

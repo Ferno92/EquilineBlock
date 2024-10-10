@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { ThemeContext } from "./_app";
 import { pages } from "../utils/DataUtils";
 
-export const Header = () => {
+const Header = () => {
   const styles = useStyles();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const router = useRouter();
@@ -148,3 +148,5 @@ export const Header = () => {
     </Container>
   );
 };
+
+export default Header;

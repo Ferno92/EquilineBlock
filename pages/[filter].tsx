@@ -1,10 +1,10 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { Header } from "./header";
 import { useCallback, useEffect, useState } from "react";
 import { Box, Container, Grid2 as Grid } from "@mui/material";
 import useStyles from "../pages-styles/filter.styles";
 import { getFilterItems, ItemModel, pages } from "../utils/DataUtils";
+import Header from "./header";
 
 const FilterPage: NextPage = () => {
   const router = useRouter();

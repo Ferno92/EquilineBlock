@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Container, IconButton, Menu } from "@mui/material";
 import useStyles from "../pages-styles/header.styles";
 import {
@@ -8,26 +8,35 @@ import {
   ShoppingBag,
   Menu as MenuIcon,
 } from "@mui/icons-material";
+import { useRouter } from "next/router";
+import { ThemeContext } from "./_app";
 
 export const Header = () => {
   const styles = useStyles();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const router = useRouter();
+  const { mode, setMode } = useContext(ThemeContext);
+
+  const goHome = useCallback(() => {
+    router.push("/");
+  }, [router]);
+
+  const navigateTo = useCallback(
+    (path: string) => {
+      router.push(path);
+    },
+    [router]
+  );
+
+  const toggleDarkMode = () => {
+    setMode(mode !== "dark" ? "dark" : "light");
+  };
+
   const icons = [
     <Search key="search" />,
-    <Favorite key="favorite" />,
+    <Favorite key="favorite" onClick={toggleDarkMode} />,
     <AccountCircle key="account" />,
     <ShoppingBag key="bag" />,
-  ];
-  const pages = [
-    "Donna",
-    "Uomo",
-    "Junior",
-    "Caschi",
-    "Safety",
-    "Cavallo",
-    "Selleria",
-    "Saddle Division",
-    "Eq Universe",
   ];
 
   const handleCloseNavMenu = () => {
@@ -72,8 +81,8 @@ export const Header = () => {
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
           >
-            {pages.map((tab, index) => (
-              <div key={index}>{tab}</div>
+            {Array.from(pages).map(([key, pageName]) => (
+              <div key={key}>{pageName}</div>
             ))}
           </Menu>
         </Container>
@@ -95,6 +104,7 @@ export const Header = () => {
           <img
             src="/images/equiline-logo-new-black.webp"
             className={styles.logo}
+            onClick={goHome}
           />
         </div>
         <div className={styles.icons}>
@@ -112,12 +122,24 @@ export const Header = () => {
           },
         }}
       >
-        {pages.map((tab, index) => (
-          <div key={index} className={styles.tab}>
-            {tab}
+        {Array.from(pages).map(([key, pageName]) => (
+          <div key={key} className={styles.tab} onClick={() => navigateTo(key)}>
+            {pageName}
           </div>
         ))}
       </Container>
     </Container>
   );
 };
+
+export const pages = new Map<string, string>([
+  ["donna", "Donna"],
+  ["uomo", "Uomo"],
+  ["junior", "Junior"],
+  ["caschi", "Caschi"],
+  ["safety", "Safety"],
+  ["cavallo", "Cavallo"],
+  ["selleria", "Selleria"],
+  ["saddleDivision", "Saddle Division"],
+  ["equniverse", "Eq Universe"],
+]);

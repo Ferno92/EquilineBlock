@@ -29,7 +29,9 @@ const useStyles = makeStyles(() => createStyles({
     menuContainer: {
         width: "auto",
         marginLeft: 0,
-        marginRight: 0
+        marginRight: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
     },
     menu: {
     },

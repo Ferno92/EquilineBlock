@@ -24,10 +24,10 @@ const FilterPage: NextPage = () => {
   }, [router, getPageName]);
 
   return (
-    <div>
+    <div className={styles.root}>
       <Header />
       <Container maxWidth="xl">
-        <h1>{pageName}</h1>
+        <h1 className={styles.header}>{pageName}</h1>
         <Grid container spacing={2} columns={12}>
           {data.map((item) => (
             <Grid key={item.id} size={{ xs: 6, sm: 4, md: 3 }}>
@@ -37,8 +37,8 @@ const FilterPage: NextPage = () => {
                 }}
                 className={styles.image}
               />
-              <div>{item.name}</div>
-              <div>{item.price}</div>
+              <div className={styles.name}>{item.name}</div>
+              <div className={styles.price}>€{item.price}</div>
             </Grid>
           ))}
         </Grid>

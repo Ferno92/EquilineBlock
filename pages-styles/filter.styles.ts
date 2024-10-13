@@ -2,6 +2,10 @@ import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => createStyles({
     root: {
+        paddingBottom: 48
+    },
+    header: {
+        textTransform: "uppercase",
     },
     image: {
         aspectRatio: "auto 400/522",
@@ -10,8 +14,16 @@ const useStyles = makeStyles(() => createStyles({
         backgroundSize: "100%",
         backgroundRepeat: "no-repeat",
         "&:hover": {
-            backgroundSize: "120%"
+            backgroundSize: "120%",
+            cursor: "pointer"
         }
+    },
+    name: {
+        textTransform: "uppercase",
+        marginTop: 8
+    },
+    price: {
+        fontWeight: 700
     }
 }))
 

@@ -36,9 +36,12 @@ const Header = () => {
 
   const icons = [
     <Search key="search" />,
-    <Favorite key="favorite" />,
-    <AccountCircle key="account" />,
-    <ShoppingBag key="bag" />,
+    <Favorite key="favorite" sx={{ display: { xs: "none", md: "block" } }} />,
+    <AccountCircle
+      key="account"
+      sx={{ display: { xs: "none", md: "block" } }}
+    />,
+    <ShoppingBag key="bag" sx={{ display: { xs: "none", md: "block" } }} />,
   ];
 
   const handleCloseNavMenu = () => {
@@ -117,7 +120,7 @@ const Header = () => {
             <IconButton
               key={index}
               onClick={() =>
-                icon.key === "favorite" ? toggleDarkMode() : undefined
+                icon.key === "search" ? toggleDarkMode() : undefined
               }
             >
               {icon}
